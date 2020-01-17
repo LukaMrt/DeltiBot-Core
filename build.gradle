@@ -15,5 +15,5 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.LukaMrt:Bot-API:V0.1.0'
+    implementation 'com.github.LukaMrt:Bot-API:V0.3.0'
 }
