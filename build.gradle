@@ -16,6 +16,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.LukaMrt:Bot-API:V0.4.0'
+    implementation 'com.github.LukaMrt:Bot-API:V0.5.4'
     implementation 'net.dv8tion:JDA:4.1.0_100'
 }
