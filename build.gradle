@@ -18,4 +18,5 @@ repositories {
 dependencies {
     implementation 'com.github.LukaMrt:Bot-API:V0.6.0'
     implementation 'net.dv8tion:JDA:4.1.0_100'
+    implementation 'com.electronwill.night-config:toml:3.6.0'
 }
