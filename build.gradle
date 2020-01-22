@@ -16,7 +16,9 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.slf4j:slf4j-simple:1.7.25'
     implementation 'com.github.LukaMrt:Bot-API:V0.6.0'
     implementation 'net.dv8tion:JDA:4.1.0_100'
     implementation 'com.electronwill.night-config:toml:3.6.0'
+    implementation 'com.jagrosh:jda-utilities:3.0.1'
 }
