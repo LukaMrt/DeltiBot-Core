@@ -6,8 +6,10 @@ import fr.lukam.deltibot.core.domain.infos.data.SimpleData;
 import fr.lukam.deltibot.core.domain.plugins.CommandsRepository;
 import fr.lukam.deltibot.core.domain.plugins.ListenersRepository;
 import fr.lukam.deltibot.core.domain.plugins.ManagePlugins;
+import fr.lukam.deltibot.core.infrastructure.CommandsListener;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class DeltiBot implements Bot {
@@ -39,8 +41,24 @@ public class DeltiBot implements Bot {
     @Override
     public void loadPlugins() {
 
+        pluginsManager.loadPlugins();
+        pluginsManager.startPlugins();
         pluginsManager.registerCommands(commandsRepository);
         pluginsManager.registerListener(listenersRepository);
+
+    }
+
+    @Override
+    public void start(CommandsListener commandsListener) {
+
+        listenersRepository.registerListeners(Collections.singletonList(commandsListener));
+
+    }
+
+    @Override
+    public void stop() {
+
+        pluginsManager.stopPlugins();
 
     }
 

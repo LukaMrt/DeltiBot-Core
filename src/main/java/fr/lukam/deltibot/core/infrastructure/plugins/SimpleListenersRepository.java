@@ -11,6 +11,11 @@ public class SimpleListenersRepository implements ListenersRepository {
     private List<Listener> listeners = new ArrayList<>();
 
     @Override
+    public List<Listener> getListeners() {
+        return this.listeners;
+    }
+
+    @Override
     public void registerListeners(List<Listener> listeners) {
         this.listeners.addAll(listeners);
     }

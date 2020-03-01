@@ -2,10 +2,16 @@ package fr.lukam.deltibot.core.domain.plugins;
 
 import fr.lukam.bot_api.bot.Plugin;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public interface PluginsRepository {
 
-    List<Plugin> loadPlugins();
+    void loadPlugins();
+
+    void startPlugins();
+
+    void stopPlugins();
+
+    void forEach(Consumer<Plugin> consumer);
 
 }

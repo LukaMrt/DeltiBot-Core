@@ -1,7 +1,5 @@
 package fr.lukam.deltibot.core.domain.plugins;
 
-import fr.lukam.bot_api.bot.Plugin;
-
 public class PluginsActions implements ManagePlugins {
 
     private final PluginsRepository pluginsRepository;
@@ -11,20 +9,31 @@ public class PluginsActions implements ManagePlugins {
     }
 
     @Override
+    public void loadPlugins() {
+        this.pluginsRepository.loadPlugins();
+    }
+
+    @Override
+    public void startPlugins() {
+        this.pluginsRepository.startPlugins();
+    }
+
+    @Override
+    public void stopPlugins() {
+        this.pluginsRepository.stopPlugins();
+    }
+
+    @Override
     public void registerCommands(CommandsRepository commandsRepository) {
 
-        this.pluginsRepository.loadPlugins().stream()
-                .map(Plugin::getCommands)
-                .forEach(commandsRepository::registerCommands);
+        this.pluginsRepository.forEach(plugin -> commandsRepository.registerCommands(plugin.getCommands()));
 
     }
 
     @Override
     public void registerListener(ListenersRepository listenersRepository) {
 
-        this.pluginsRepository.loadPlugins().stream()
-                .map(Plugin::getListeners)
-                .forEach(listenersRepository::registerListeners);
+        this.pluginsRepository.forEach(plugin -> listenersRepository.registerListeners(plugin.getListeners()));
 
     }
 
