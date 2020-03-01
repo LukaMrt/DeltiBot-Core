@@ -1,19 +1,28 @@
 package fr.lukam.deltibot.core;
 
-import fr.lukam.bot_api.bot.API;
-import fr.lukam.deltibot.model.bot.JDABot;
-import fr.lukam.deltibot.model.entities.message.JDAEmbedBuilder;
-import fr.lukam.deltibot.model.entities.message.JDAFieldBuilder;
-import fr.lukam.deltibot.model.entities.message.JDAMessageBuilder;
+import fr.lukam.deltibot.core.domain.bot.Bot;
+
+import static fr.lukam.deltibot.core.domain.bot.DeltiBotBuilder.aDeltiBot;
 
 public class Main {
 
-    public static void main(String[] args) {
+    private final Bot bot;
 
-        API.setBot(new JDABot(null));
-        API.setEmbedBuilder(new JDAEmbedBuilder());
-        API.setMessageBuilder(new JDAMessageBuilder());
-        API.setFieldBuilder(new JDAFieldBuilder());
+    public Main(ObjectsProvider provider) {
+
+        bot = aDeltiBot()
+                .withCommandsRepository(provider.getCommandsRepository())
+                .withListenersRepository(provider.getListenersRepository())
+                .withPluginManager(provider.getPluginManager())
+                .withInfosSaver(provider.getInfosSaver())
+                .build();
+
+    }
+
+    public void run(BotInfos botInfos) {
+
+        bot.loadPlugins();
+        bot.registerInfos(botInfos);
 
     }
 
