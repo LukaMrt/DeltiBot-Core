@@ -1,4 +1,4 @@
-package fr.lukam.deltibot.core;
+package fr.lukam.deltibot.core.domain.bot;
 
 public class BotInfos {
 

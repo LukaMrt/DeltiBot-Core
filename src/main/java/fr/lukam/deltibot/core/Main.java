@@ -1,5 +1,6 @@
 package fr.lukam.deltibot.core;
 
+import fr.lukam.deltibot.core.domain.bot.BotInfos;
 import fr.lukam.deltibot.core.domain.bot.Bot;
 
 import static fr.lukam.deltibot.core.domain.bot.DeltiBotBuilder.aDeltiBot;
