@@ -1,2 +1,5 @@
 rootProject.name = 'DeltiBot-Core'
+include 'Domain'
+include 'Infrastructure'
+include 'Main'
 
