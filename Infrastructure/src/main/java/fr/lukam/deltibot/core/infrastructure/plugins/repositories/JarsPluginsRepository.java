@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class JarsPluginsRepository implements PluginsRepository {
 
-    private final List<fr.lukam.bot_api.bot.Plugin> plugins = new ArrayList<>();
+    private final List<Plugin> plugins = new ArrayList<>();
 
     @Override
     public void loadPlugins() {
@@ -42,7 +42,7 @@ public class JarsPluginsRepository implements PluginsRepository {
 
                 Class<?> aClass = Class.forName(YAMLParserUtils.getParsedYaml(file).get("main"), true, child);
 
-                fr.lukam.bot_api.bot.Plugin plugin = (fr.lukam.bot_api.bot.Plugin) aClass.newInstance();
+                Plugin plugin = (Plugin) aClass.newInstance();
                 this.plugins.add(plugin);
 
             }
@@ -55,13 +55,13 @@ public class JarsPluginsRepository implements PluginsRepository {
 
     @Override
     public void startPlugins() {
-        this.plugins.forEach(fr.lukam.bot_api.bot.Plugin::onEnable);
+        this.plugins.forEach(Plugin::onEnable);
     }
 
     @Override
     public void stopPlugins() {
 
-        this.plugins.forEach(fr.lukam.bot_api.bot.Plugin::onDisable);
+        this.plugins.forEach(Plugin::onDisable);
     }
 
     @Override
