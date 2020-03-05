@@ -6,6 +6,7 @@ import fr.lukam.deltibot.core.domain.infos.data.SimpleData;
 import fr.lukam.deltibot.core.domain.plugins.CommandsRepository;
 import fr.lukam.deltibot.core.domain.plugins.ListenersRepository;
 import fr.lukam.deltibot.core.domain.plugins.ManagePlugins;
+import fr.lukam.deltibot.core.domain.plugins.model.Listener;
 
 import java.util.Collections;
 
@@ -45,7 +46,7 @@ public class DeltiBot implements Bot {
     }
 
     @Override
-    public void start(CommandsListener commandsListener) {
+    public void start(Listener commandsListener) {
 
         this.listenersRepository.registerListeners(Collections.singletonList(commandsListener));
 
