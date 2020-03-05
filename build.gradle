@@ -5,12 +5,33 @@ plugins {
 group 'fr.lukam'
 version '0.1.0'
 
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+jar {
+    manifest {
+        attributes(
+                "Class-Path": configurations.compile.collect {
+                    it.getName()
+                }.join(' '))
+    }
 }
 
-dependencies {
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceCompatibility = 1.8
+
+subprojects {
+
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
 
 }
