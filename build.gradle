@@ -5,11 +5,26 @@ plugins {
 group 'fr.lukam'
 version '0.1.0'
 
+jar {
+    manifest {
+        attributes(
+                "Class-Path": configurations.compile.collect {
+                    it.getName()
+                }.join(' '))
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 sourceCompatibility = 1.8
 
 subprojects {
 
-    apply plugin : 'java'
+    apply plugin: 'java'
 
     repositories {
         mavenCentral()
