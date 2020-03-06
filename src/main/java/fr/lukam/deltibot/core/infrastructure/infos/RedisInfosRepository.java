@@ -3,7 +3,7 @@ package fr.lukam.deltibot.core.infrastructure.infos;
 import fr.lukam.deltibot.core.domain.infos.InfosRepository;
 import redis.clients.jedis.Jedis;
 
-public class RedisInfosRepository implements InfosRepository {
+public class RedisInfosRepository implements InfosRepository, fr.lukam.bot.api.repositories.InfosRepository {
 
     private final Jedis jedis;
 

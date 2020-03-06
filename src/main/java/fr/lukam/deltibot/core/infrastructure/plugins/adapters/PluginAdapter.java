@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 public class PluginAdapter implements Plugin {
 
-    private final fr.lukam.bot_api.bot.Plugin plugin;
+    private final fr.lukam.bot.api.bot.Plugin plugin;
 
-    public PluginAdapter(fr.lukam.bot_api.bot.Plugin plugin) {
+    public PluginAdapter(fr.lukam.bot.api.bot.Plugin plugin) {
         this.plugin = plugin;
     }
 

@@ -4,13 +4,13 @@ import fr.lukam.deltibot.core.domain.plugins.model.Command;
 
 public class CommandAdapter implements Command {
 
-    private final fr.lukam.bot_api.entities.interfaces.commands.Command command;
+    private final fr.lukam.bot.api.entities.interfaces.commands.Command command;
 
-    public CommandAdapter(fr.lukam.bot_api.entities.interfaces.commands.Command command) {
+    public CommandAdapter(fr.lukam.bot.api.entities.interfaces.commands.Command command) {
         this.command = command;
     }
 
-    public fr.lukam.bot_api.entities.interfaces.commands.Command getAPICommand() {
+    public fr.lukam.bot.api.entities.interfaces.commands.Command getAPICommand() {
         return this.command;
     }
 
