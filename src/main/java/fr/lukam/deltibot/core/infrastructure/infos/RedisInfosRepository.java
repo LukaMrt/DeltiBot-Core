@@ -13,12 +13,14 @@ public class RedisInfosRepository implements InfosRepository {
 
     @Override
     public void set(String key, String value) {
+        if (value == null) return;
         jedis.set(key, value);
     }
 
     @Override
     public void set(String key, String[] value) {
         jedis.del(key);
+        if (value.length == 0) return;
         jedis.rpush(key, value);
     }
 
