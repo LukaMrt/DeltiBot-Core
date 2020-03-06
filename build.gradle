@@ -5,15 +5,6 @@ plugins {
 group 'fr.lukam'
 version '0.1.1'
 
-jar {
-    manifest {
-        attributes(
-                "Class-Path": configurations.compile.collect {
-                    it.getName()
-                }.join(' '))
-    }
-}
-
 compileJava.options.encoding = 'UTF-8'
 
 tasks.withType(JavaCompile) {
@@ -22,16 +13,17 @@ tasks.withType(JavaCompile) {
 
 sourceCompatibility = 1.8
 
-subprojects {
-
-    apply plugin: 'java'
-
-    repositories {
-        mavenCentral()
-        jcenter()
-        maven {
-            url 'https://jitpack.io'
-        }
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url 'https://jitpack.io'
     }
+}
+
+dependencies {
+
+    implementation 'com.github.LukaMrt:Bot-API:V0.6.1'
+    implementation 'redis.clients:jedis:3.2.0'
 
 }
