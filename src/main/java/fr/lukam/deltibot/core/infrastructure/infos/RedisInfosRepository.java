@@ -18,7 +18,8 @@ public class RedisInfosRepository implements InfosRepository {
 
     @Override
     public void set(String key, String[] value) {
-        jedis.lpush(key, value);
+        jedis.del(key);
+        jedis.rpush(key, value);
     }
 
     @Override
