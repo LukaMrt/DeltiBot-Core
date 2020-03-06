@@ -1,6 +1,7 @@
 package fr.lukam.deltibot.core.infrastructure.plugins.repositories;
 
-import fr.lukam.bot_api.bot.Plugin;
+import fr.lukam.bot.api.bot.Plugin;
+import fr.lukam.bot.api.entities.fakes.FakePlugin;
 import fr.lukam.deltibot.core.domain.plugins.CommandsRepository;
 import fr.lukam.deltibot.core.domain.plugins.ListenersRepository;
 import fr.lukam.deltibot.core.domain.plugins.PluginsRepository;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JarsPluginsRepository implements PluginsRepository {
+public class JarsPluginsRepository implements PluginsRepository, fr.lukam.bot.api.repositories.PluginsRepository {
 
     private final List<Plugin> plugins = new ArrayList<>();
 
@@ -88,6 +89,19 @@ public class JarsPluginsRepository implements PluginsRepository {
 
         listenersRepository.registerListeners(listeners);
 
+    }
+
+    @Override
+    public List<Plugin> getPlugins() {
+        return this.plugins;
+    }
+
+    @Override
+    public Plugin getPluginByName(String name) {
+        return this.plugins.stream()
+                .filter(plugin -> plugin.getName().equalsIgnoreCase(name))
+                .findAny()
+                .orElseGet(FakePlugin::new);
     }
 
 }

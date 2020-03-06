@@ -1,27 +1,27 @@
 package fr.lukam.deltibot.core.infrastructure.plugins.repositories;
 
+import fr.lukam.bot.api.entities.fakes.commands.FakeCommand;
 import fr.lukam.deltibot.core.domain.plugins.CommandsRepository;
 import fr.lukam.deltibot.core.domain.plugins.model.Command;
 import fr.lukam.deltibot.core.infrastructure.plugins.adapters.CommandAdapter;
-import fr.lukam.deltibot.core.infrastructure.plugins.providers.CommandsProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class SimpleCommandsRepository implements CommandsRepository, CommandsProvider {
+public class SimpleCommandsRepository implements CommandsRepository, fr.lukam.bot.api.repositories.CommandsRepository {
 
-    private final List<fr.lukam.bot_api.entities.interfaces.commands.Command> commands = new ArrayList<>();
+    private final List<fr.lukam.bot.api.entities.interfaces.commands.Command> commands = new ArrayList<>();
 
     @Override
-    public Optional<fr.lukam.bot_api.entities.interfaces.commands.Command> getCommandByName(String name) {
+    public fr.lukam.bot.api.entities.interfaces.commands.Command getCommandByName(String name) {
         return this.commands.stream()
                 .filter(command -> command.isCommand(name))
-                .findAny();
+                .findAny()
+                .orElseGet(FakeCommand::new);
     }
 
     @Override
-    public List<fr.lukam.bot_api.entities.interfaces.commands.Command> getCommands() {
+    public List<fr.lukam.bot.api.entities.interfaces.commands.Command> getCommands() {
         return this.commands;
     }
 
