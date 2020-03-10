@@ -38,6 +38,7 @@ public class DeltiBot implements Bot {
     @Override
     public void loadPlugins() {
 
+        System.out.println("From deltibot : " + commandsRepository);
         this.pluginsManager.loadPlugins();
         this.pluginsManager.startPlugins();
         this.pluginsManager.registerCommands(this.commandsRepository);

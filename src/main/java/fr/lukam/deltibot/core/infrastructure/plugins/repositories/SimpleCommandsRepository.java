@@ -28,6 +28,8 @@ public class SimpleCommandsRepository implements CommandsRepository, fr.lukam.bo
     @Override
     public void registerCommands(List<Command> commands) {
 
+        System.out.println("I register commands : " + this);
+
         commands.stream()
                 .map(command -> (CommandAdapter) command)
                 .map(CommandAdapter::getAPICommand)
