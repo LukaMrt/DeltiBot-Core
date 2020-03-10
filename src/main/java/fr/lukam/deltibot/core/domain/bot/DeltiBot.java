@@ -39,9 +39,9 @@ public class DeltiBot implements Bot {
     public void loadPlugins() {
 
         this.pluginsManager.loadPlugins();
-        this.pluginsManager.startPlugins();
         this.pluginsManager.registerCommands(this.commandsRepository);
         this.pluginsManager.registerListener(this.listenersRepository);
+        this.pluginsManager.startPlugins();
 
     }
 
