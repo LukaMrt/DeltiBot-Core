@@ -12,8 +12,6 @@ public class Main {
 
     public Main(ObjectsProvider provider) {
 
-        System.out.println("From main : " + provider.getCommandsRepository());
-
         bot = aDeltiBot()
                 .withCommandsRepository(provider.getCommandsRepository())
                 .withListenersRepository(provider.getListenersRepository())
