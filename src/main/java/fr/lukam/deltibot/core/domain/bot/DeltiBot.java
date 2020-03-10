@@ -40,9 +40,9 @@ public class DeltiBot implements Bot {
 
         System.out.println("From deltibot : " + commandsRepository);
         this.pluginsManager.loadPlugins();
-        this.pluginsManager.startPlugins();
         this.pluginsManager.registerCommands(this.commandsRepository);
         this.pluginsManager.registerListener(this.listenersRepository);
+        this.pluginsManager.startPlugins();
 
     }
 
