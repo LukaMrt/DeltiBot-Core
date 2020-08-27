@@ -1,5 +1,6 @@
 package fr.lukam.deltibot.core.main;
 
+import fr.lukam.bot.api.entities.interfaces.events.Listener;
 import fr.lukam.deltibot.core.domain.bot.BotInfos;
 import fr.lukam.deltibot.core.domain.bot.Bot;
 
@@ -8,25 +9,25 @@ import static fr.lukam.deltibot.core.domain.bot.DeltiBotBuilder.aDeltiBot;
 public class Main {
 
     private final Bot bot;
-    private ObjectsProvider provider;
+    private final Listener commandsListener;
 
     public Main(ObjectsProvider provider) {
 
-        bot = aDeltiBot()
+        this.commandsListener = provider.getCommandsListener();
+
+        this.bot = aDeltiBot()
                 .withCommandsRepository(provider.getCommandsRepository())
                 .withListenersRepository(provider.getListenersRepository())
                 .withPluginManager(provider.getPluginManager())
                 .withInfosSaver(provider.getInfosSaver())
                 .build();
-
-        this.provider = provider;
     }
 
     public void start(BotInfos botInfos) {
 
         bot.loadPlugins();
         bot.registerInfos(botInfos);
-        bot.start(provider.getCommandsListener());
+        bot.start(commandsListener);
 
     }
 

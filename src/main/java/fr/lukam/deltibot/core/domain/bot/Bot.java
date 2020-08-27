@@ -1,6 +1,6 @@
 package fr.lukam.deltibot.core.domain.bot;
 
-import fr.lukam.deltibot.core.domain.plugins.model.Listener;
+import fr.lukam.bot.api.entities.interfaces.events.Listener;
 
 public interface Bot {
 

@@ -1,12 +1,11 @@
 package fr.lukam.deltibot.core.main;
 
-import fr.lukam.deltibot.core.domain.infos.InfosRepository;
+import fr.lukam.bot.api.entities.interfaces.events.Listener;
+import fr.lukam.bot.api.repositories.CommandsRepository;
+import fr.lukam.bot.api.repositories.InfosRepository;
+import fr.lukam.bot.api.repositories.ListenersRepository;
 import fr.lukam.deltibot.core.domain.infos.SaveInfos;
-import fr.lukam.deltibot.core.domain.plugins.CommandsRepository;
-import fr.lukam.deltibot.core.domain.plugins.ListenersRepository;
 import fr.lukam.deltibot.core.domain.plugins.ManagePlugins;
-import fr.lukam.deltibot.core.domain.plugins.PluginsRepository;
-import fr.lukam.deltibot.core.domain.plugins.model.Listener;
 
 public interface ObjectsProvider {
 

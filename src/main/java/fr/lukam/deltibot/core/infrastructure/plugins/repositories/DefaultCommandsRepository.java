@@ -1,14 +1,13 @@
 package fr.lukam.deltibot.core.infrastructure.plugins.repositories;
 
 import fr.lukam.bot.api.entities.fakes.commands.FakeCommand;
-import fr.lukam.deltibot.core.domain.plugins.CommandsRepository;
-import fr.lukam.deltibot.core.domain.plugins.model.Command;
-import fr.lukam.deltibot.core.infrastructure.plugins.adapters.CommandAdapter;
+import fr.lukam.bot.api.entities.interfaces.commands.Command;
+import fr.lukam.bot.api.repositories.CommandsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleCommandsRepository implements CommandsRepository, fr.lukam.bot.api.repositories.CommandsRepository {
+public class DefaultCommandsRepository implements CommandsRepository {
 
     private final List<fr.lukam.bot.api.entities.interfaces.commands.Command> commands = new ArrayList<>();
 
@@ -28,10 +27,7 @@ public class SimpleCommandsRepository implements CommandsRepository, fr.lukam.bo
     @Override
     public void registerCommands(List<Command> commands) {
 
-        commands.stream()
-                .map(command -> (CommandAdapter) command)
-                .map(CommandAdapter::getAPICommand)
-                .forEach(this.commands::add);
+        this.commands.addAll(commands);
 
     }
 

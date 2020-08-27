@@ -1,8 +1,8 @@
 package fr.lukam.deltibot.core.domain.bot;
 
+import fr.lukam.bot.api.repositories.CommandsRepository;
+import fr.lukam.bot.api.repositories.ListenersRepository;
 import fr.lukam.deltibot.core.domain.infos.SaveInfos;
-import fr.lukam.deltibot.core.domain.plugins.CommandsRepository;
-import fr.lukam.deltibot.core.domain.plugins.ListenersRepository;
 import fr.lukam.deltibot.core.domain.plugins.ManagePlugins;
 
 public class DeltiBotBuilder {
