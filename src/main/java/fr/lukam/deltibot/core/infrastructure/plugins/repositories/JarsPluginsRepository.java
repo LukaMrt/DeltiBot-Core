@@ -2,13 +2,11 @@ package fr.lukam.deltibot.core.infrastructure.plugins.repositories;
 
 import fr.lukam.bot.api.bot.Plugin;
 import fr.lukam.bot.api.entities.fakes.FakePlugin;
-import fr.lukam.deltibot.core.domain.plugins.CommandsRepository;
-import fr.lukam.deltibot.core.domain.plugins.ListenersRepository;
-import fr.lukam.deltibot.core.domain.plugins.PluginsRepository;
-import fr.lukam.deltibot.core.domain.plugins.model.Command;
-import fr.lukam.deltibot.core.domain.plugins.model.Listener;
-import fr.lukam.deltibot.core.infrastructure.plugins.adapters.CommandAdapter;
-import fr.lukam.deltibot.core.infrastructure.plugins.adapters.ListenerAdapter;
+import fr.lukam.bot.api.entities.interfaces.commands.Command;
+import fr.lukam.bot.api.entities.interfaces.events.Listener;
+import fr.lukam.bot.api.repositories.CommandsRepository;
+import fr.lukam.bot.api.repositories.ListenersRepository;
+import fr.lukam.bot.api.repositories.PluginsRepository;
 import fr.lukam.deltibot.core.infrastructure.utils.YAMLParserUtils;
 
 import java.io.File;
@@ -19,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JarsPluginsRepository implements PluginsRepository, fr.lukam.bot.api.repositories.PluginsRepository {
+public class JarsPluginsRepository implements  PluginsRepository {
 
     private final List<Plugin> plugins = new ArrayList<>();
 
@@ -61,7 +59,6 @@ public class JarsPluginsRepository implements PluginsRepository, fr.lukam.bot.ap
 
     @Override
     public void stopPlugins() {
-
         this.plugins.forEach(Plugin::onDisable);
     }
 
@@ -71,11 +68,9 @@ public class JarsPluginsRepository implements PluginsRepository, fr.lukam.bot.ap
         List<Command> commands = this.plugins.stream()
                 .map(Plugin::getCommands)
                 .flatMap(List::stream)
-                .map(CommandAdapter::new)
                 .collect(Collectors.toList());
 
         commandsRepository.registerCommands(commands);
-
     }
 
     @Override
@@ -84,11 +79,9 @@ public class JarsPluginsRepository implements PluginsRepository, fr.lukam.bot.ap
         List<Listener> listeners = this.plugins.stream()
                 .map(Plugin::getListeners)
                 .flatMap(List::stream)
-                .map(ListenerAdapter::new)
                 .collect(Collectors.toList());
 
         listenersRepository.registerListeners(listeners);
-
     }
 
     @Override
@@ -98,6 +91,7 @@ public class JarsPluginsRepository implements PluginsRepository, fr.lukam.bot.ap
 
     @Override
     public Plugin getPluginByName(String name) {
+
         return this.plugins.stream()
                 .filter(plugin -> plugin.getName().equalsIgnoreCase(name))
                 .findAny()

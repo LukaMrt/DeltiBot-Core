@@ -1,5 +1,9 @@
 package fr.lukam.deltibot.core.domain.plugins;
 
+import fr.lukam.bot.api.repositories.CommandsRepository;
+import fr.lukam.bot.api.repositories.ListenersRepository;
+import fr.lukam.bot.api.repositories.PluginsRepository;
+
 public class PluginsActions implements ManagePlugins {
 
     private final PluginsRepository pluginsRepository;
